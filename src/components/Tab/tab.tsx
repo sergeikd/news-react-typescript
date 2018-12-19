@@ -1,7 +1,8 @@
 import React from 'react';
 
-export const Tab = ({ tabItem, activeTab, index, onTabClick }) => {
+import { ITab } from '../../interfaces/ITab'
 
+export const Tab: React.SFC<ITab>  = ({ tabItem, activeTab, index, onTabClick }): JSX.Element => {
     return (
         <button className={activeTab === index ? 'tab active' : 'tab'}
             key={index}

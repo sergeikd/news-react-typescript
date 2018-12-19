@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
+import { IState } from './interfaces/IState'
 import { Content } from './components/Content/content'
 import { getNews } from './components/Api/api'
 import { TabMenu } from './components/TabMenu/tabMenu'
 import { themes } from './app-data/app-data'
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
+class App extends Component<{}, IState> {
+  constructor(props: {}) {
     super(props);
-    this.state = {
+    this.state  = {
       themes: themes,
       content: [],
       activeTab: 0,
@@ -18,13 +18,7 @@ class App extends Component {
     this.onTabClick = this.onTabClick.bind(this);
   }
 
-  static propTypes = {
-    themes: PropTypes.arrayOf(PropTypes.string),
-    content: PropTypes.arrayOf(PropTypes.object),
-    activeTab: PropTypes.number,
-  };
-
-  onTabClick = (id) => {
+  onTabClick: (id: number) => void = (id) => {
     this.setState({ activeTab: id })
     getNews(this.state.themes[id])
       .then(data => this.setState({ content: data.articles }));
@@ -38,10 +32,14 @@ class App extends Component {
     return (
       <>
         <TabMenu themes={this.state.themes} activeTab={this.state.activeTab} onTabClick={this.onTabClick} />
-        <Content content={this.state.content} />
+        <Content articles={this.state.content} />
       </>
     );
   }
 }
 
 export default App;
+
+interface KonvaMouseEvent extends React.MouseEvent<HTMLElement> {
+  id: number
+}

@@ -1,10 +1,11 @@
 import React from 'react';
 
-export const Content = ({ content }) => {
+import { IArticles } from '../../interfaces/IArticles'
 
+export const Content: React.SFC<IArticles> = ({articles}): JSX.Element => {
     return (
         <ul className="news-list">
-            {content.map((newsItem, index) => {
+            {articles.map((newsItem, index) => {
                 return (
                     <li key={index} className="news-item">
                         <img src={newsItem.urlToImage} alt={newsItem.title}></img>
