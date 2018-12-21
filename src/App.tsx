@@ -15,7 +15,6 @@ class App extends Component<{}, IState> {
       content: [],
       activeTab: 0,
     };
-    this.onTabClick = this.onTabClick.bind(this);
   }
 
   onTabClick: (id: number) => void = (id) => {
@@ -39,7 +38,3 @@ class App extends Component<{}, IState> {
 }
 
 export default App;
-
-interface KonvaMouseEvent extends React.MouseEvent<HTMLElement> {
-  id: number
-}
